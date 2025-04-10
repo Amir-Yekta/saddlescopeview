@@ -47,7 +47,7 @@ const ExhibitForm = () => {
           <input
             type="text"
             id="exhibitName"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-black focus:outline-none focus:ring-2 focus:ring-green-500"
             value={exhibitName}
             onChange={(e) => setExhibitName(e.target.value)}
             required
@@ -60,7 +60,7 @@ const ExhibitForm = () => {
           </label>
           <textarea
             id="description"
-            className="w-full border border-gray-300 rounded px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-black resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={4}

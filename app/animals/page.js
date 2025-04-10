@@ -6,25 +6,37 @@ import SearchBar from '../components/SearchBar';
 
 export default function AnimalList({ initialAnimals }) {
   const [animals, setAnimals] = useState(initialAnimals || []);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearch = async (searchQuery) => {
-    if (searchQuery === '') {
-      setAnimals(initialAnimals || []);
-      return;
-    }
-
-    const results = await getAnimalsByName(searchQuery);
+  const fetchAllAnimals = async () => {
+    const results = await getAnimalsByName('');
     setAnimals(results || []);
   };
 
-  // Optionally, use useEffect to reset animals when initialAnimals change
+  const handleSearch = async (query) => {
+    setSearchQuery(query); 
+
+    if (query === '') {
+      fetchAllAnimals(); 
+      return;
+    }
+
+    const results = await getAnimalsByName(query);
+    setAnimals(results || []);
+  };
+
   useEffect(() => {
-    setAnimals(initialAnimals || []);
-  }, [initialAnimals]);
+    fetchAllAnimals();
+
+    const interval = setInterval(() => {
+      fetchAllAnimals(); 
+    }, 5000); 
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md">
-
       <SearchBar onSearch={handleSearch} />
 
       {Array.isArray(animals) && animals.length > 0 ? (

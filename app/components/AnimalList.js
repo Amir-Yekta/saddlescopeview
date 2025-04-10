@@ -21,6 +21,15 @@ export default function AnimalList({ initialAnimals }) {
     setAnimals(initialAnimals || []);
   }, [initialAnimals]);
 
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const refreshed = await getAnimalsByName(''); 
+      setAnimals(refreshed || []);
+    }, 5000); 
+  
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="bg-white p-6 rounded-xl shadow-md">
 
