@@ -17,7 +17,6 @@ export default function ExhibitList({ initialExhibits }) {
     setExhibit(results || []);
   };
 
-  // Optionally, use useEffect to reset animals when initialAnimals change
   useEffect(() => {
     setExhibit(initialExhibits || []);
   }, [initialExhibits]);
