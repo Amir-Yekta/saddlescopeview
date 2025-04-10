@@ -5,25 +5,38 @@ import { getExhibitsByName } from '@/app/actions';
 import SearchBar from '../components/SearchBar';
 
 export default function ExhibitList({ initialExhibits }) {
-  const [exhibits, setExhibit] = useState(initialExhibits || []);
+  const [exhibits, setExhibits] = useState(initialExhibits || []);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearch = async (searchQuery) => {
-    if (searchQuery === '') {
-      setExhibit(initialExhibits || []);
+  const fetchAllExhibits = async () => {
+    const results = await getExhibitsByName('');
+    setExhibits(results || []);
+  };
+
+  const handleSearch = async (query) => {
+    setSearchQuery(query); 
+
+    if (query === '') {
+      fetchAllExhibits(); 
       return;
     }
 
-    const results = await getExhibitsByName(searchQuery);
-    setExhibit(results || []);
+    const results = await getExhibitsByName(query);
+    setExhibits(results || []);
   };
 
   useEffect(() => {
-    setExhibit(initialExhibits || []);
-  }, [initialExhibits]);
+    fetchAllExhibits();
+
+    const interval = setInterval(() => {
+      fetchAllExhibits(); 
+    }, 5000); 
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md">
-
       <SearchBar onSearch={handleSearch} />
 
       {Array.isArray(exhibits) && exhibits.length > 0 ? (
