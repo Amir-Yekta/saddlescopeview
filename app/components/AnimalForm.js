@@ -56,7 +56,7 @@ const AnimalForm = () => {
           <input
             type="text"
             id="name"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded text-black px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -69,7 +69,7 @@ const AnimalForm = () => {
           </label>
           <textarea
             id="funFact"
-            className="w-full border border-gray-300 rounded px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded text-black px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
             value={funFact}
             onChange={(e) => setFunFact(e.target.value)}
             rows={4}
@@ -83,7 +83,7 @@ const AnimalForm = () => {
           <input
             type="text"
             id="scientificName"
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 text-black rounded px-3 py-2"
             value={scientificName}
             onChange={(e) => setScientificName(e.target.value)}
           />
@@ -96,7 +96,7 @@ const AnimalForm = () => {
           <input
             type="text"
             id="exhibit"
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 text-black rounded px-3 py-2"
             value={exhibit}
             onChange={(e) => setExhibit(e.target.value)}
           />
@@ -109,7 +109,7 @@ const AnimalForm = () => {
           <input
             type="text"
             id="location"
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-gray-300 text-black rounded px-3 py-2"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
